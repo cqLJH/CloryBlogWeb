@@ -1,0 +1,52 @@
+/*
+ * @Author: LJH 52238648+cqLJH@users.noreply.github.com
+ * @Date: 2022-09-30 13:24:07
+ * @LastEditors: LJH 52238648+cqLJH@users.noreply.github.com
+ * @LastEditTime: 2022-09-30 13:29:43
+ * @FilePath: \aurora-blog\src\main.ts
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
+import './router/guard'
+import '@/styles/index.scss'
+import 'normalize.css/normalize.css'
+import { createPinia } from 'pinia'
+import { i18n } from './locales'
+import VueClickAway from 'vue3-click-away'
+import lazyPlugin from 'vue3-lazy'
+import { registerSvgIcon } from '@/icons'
+import { registerObSkeleton } from '@/components/LoadingSkeleton'
+import 'prismjs/themes/prism.css'
+import 'prismjs'
+import 'element-plus/theme-chalk/index.css'
+import { components, plugins } from './plugins/element-plus'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+import infiniteScroll from 'vue3-infinite-scroll-better'
+import v3ImgPreview from 'v3-img-preview'
+import api from './api/api'
+
+const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
+export const app = createApp(App)
+  .use(router)
+  .use(pinia)
+  .use(i18n)
+  .use(VueClickAway)
+  .use(infiniteScroll)
+  .use(v3ImgPreview, {})
+  .use(lazyPlugin, {
+    loading: require('@/assets/default-cover.jpg'),
+    error: require('@/assets/default-cover.jpg')
+  })
+components.forEach((component) => {
+  app.component(component.name, component)
+})
+plugins.forEach((plugin) => {
+  app.use(plugin)
+})
+registerSvgIcon(app)
+registerObSkeleton(app)
+app.mount('#app')
+api.report()
