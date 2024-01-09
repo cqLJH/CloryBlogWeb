@@ -1,10 +1,9 @@
 /*
  * @Author: LJH 52238648+cqLJH@users.noreply.github.com
  * @Date: 2022-09-30 13:24:07
- * @LastEditors: LJH 52238648+cqLJH@users.noreply.github.com
- * @LastEditTime: 2022-09-30 13:29:43
+ * @LastEditors: LJH 424122999@qq.com
+ * @LastEditTime: 2024-01-09 15:21:35
  * @FilePath: \aurora-blog\src\main.ts
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import { createApp } from 'vue'
 import App from './App.vue'
