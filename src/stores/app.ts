@@ -24,7 +24,7 @@ export const useAppStore = defineStore('appStore', {
   state: () => {
     return {
       themeConfig: {
-        theme: cookies.get('theme') ? String(cookies.get('theme')) : 'theme-dark',
+        theme: cookies.get('theme') ? String(cookies.get('theme')) : 'theme-light',
         profile_shape: 'circle-avatar',
         feature: true,
         gradient: {

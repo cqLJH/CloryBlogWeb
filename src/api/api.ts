@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { app } from '@/main'
 
-axios.defaults.baseURL = 'http://gw.icqcore.com:8888/blog/api/web/'
+axios.defaults.baseURL = 'http://api.icqcore.com/blog/api/web/'
 
 axios.interceptors.request.use((config: any) => {
   const token = sessionStorage.getItem('token')
