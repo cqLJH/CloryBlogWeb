@@ -15,7 +15,6 @@ jobs:
     steps:
       - name: sync github -> gitee
         uses: actions/checkout@v1
-      - name: Mirror Github to Gitee with white list
         uses: ./.
         if: env.dst_key && env.dst_token && env.gitee_user
         with:
