@@ -13,12 +13,10 @@ jobs:
       gitee_user: ${{ secrets.GITEE_USER }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          persist-credentials: false
-
       - name: sync github -> gitee
-        uses: Yikun/hub-mirror-action@master
+      - uses: actions/checkout@v1
+      - name: Mirror Github to Gitee with white list
+        uses: ./.
         if: env.dst_key && env.dst_token && env.gitee_user
         with:
           # 必选，需要同步的 Github 用户（源）
