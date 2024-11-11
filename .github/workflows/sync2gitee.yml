@@ -14,8 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: sync github -> gitee
-        uses: actions/checkout@v1
-        uses: ./.
+        uses: Yikun/hub-mirror-action@master
         if: env.dst_key && env.dst_token && env.gitee_user
         with:
           # 必选，需要同步的 Github 用户（源）
@@ -28,12 +27,15 @@ jobs:
           dst_key: ${{ secrets.GITEE_AND_GITHUB_PRIVATE_KEY  }}
           # 必选，Gitee对应的用于创建仓库的token，https://gitee.com/profile/personal_access_tokens
           dst_token: ${{ secrets.GITEE_TOKEN }}
-          # 如果是组织，指定组织即可，默认为用户 user
-          # account_type: org
+          account_type: user # 账户类型
+          clone_style: 'https' # 使用https方式进行clone，也可以使用ssh
+          debug: true # 启用后会显示所有执行命令
+          force_update: true # 启用后，强制同步，即强制覆盖目的端仓库
           # 直接取当前项目的仓库名
           static_list: ${{ github.event.repository.name }}
           # 目的端的可见性设置为私有仓
           dst_visibility: 'private'
+          timeout: '600s' # git超时设置，超时后会自动重试git操作
           # 还有黑、白名单，静态名单机制，可以用于更新某些指定库
           # static_list: 'repo_name,repo_name2'
           # black_list: 'repo_name,repo_name2'
