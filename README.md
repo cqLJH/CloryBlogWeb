@@ -2,4 +2,4 @@ npm install
 
 npm run build
 
-博客园前端项目
+博客前端项目
